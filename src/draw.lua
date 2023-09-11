@@ -9,34 +9,35 @@ end
 
 function draw_ship()
   if muzzle > 0 then
-    circfill(ship_x + 3, ship_y - 2, muzzle, 7)
+    circfill(ship.x + 3, ship.y - 2, muzzle, 7)
   end
 
-  spr(ship_spr, ship_x, ship_y)
-  spr(ship_flm[flm_idx], ship_x, ship_y + 7)
+  draw_spr(ship)
+  spr(ship_flm[flm_idx], ship.x, ship.y + 7)
 end
 
 function draw_mobs()
   for m in all(mobs) do
-    spr(m.anm[m.spr], m.x, m.y)
+    draw_spr(m)
   end
 end
 
 function draw_bullets()
   for b in all(bul) do
-    spr(b.anm[b.spr], b.x, b.y)
+    draw_spr(b)
   end
 end
 
 function draw_ui()
-  print("score: " .. score, 4, 4, 12)
+  local scr_txt = "score: " .. score
+  print(scr_txt, 127 - (2 + #scr_txt * 4), 4, 12)
 
-  for i = 1, 3 do
+  for i = 1, max_lives do
     local s = 64
     if lives < i then
       s = 65
     end
-    spr(s, 89 + (i * 9), 4)
+    spr(s, 4 + (i - 1) * 9, 4)
   end
 end
 
@@ -49,6 +50,14 @@ function draw_starfield()
       c = 13
     end
     pset(s.x, s.y, c)
+  end
+end
+
+function draw_spr(s)
+  if s.anm then
+    spr(s.anm[s.spr], s.x, s.y)
+  else
+    spr(s.spr, s.x, s.y)
   end
 end
 

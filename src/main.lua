@@ -11,11 +11,13 @@ end
 function start_game()
   a_t = 0
 
-  ship_x = 60
-  ship_y = 112
-  ship_vx = 0
-  ship_vy = 0
-  ship_spr = 2
+  ship = {
+    x = 60,
+    y = 112,
+    vx = 0,
+    vy = 0,
+    spr = 2
+  }
   ship_flm = {32, 33, 34, 35 ,36}
   flm_idx = 1
 
@@ -28,7 +30,8 @@ function start_game()
   make_mob(60, 30)
 
   score = 1337
-  lives = 2
+  lives = 1
+  max_lives = 3
 
   _upd = update_game
   _drw = draw_game

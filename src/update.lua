@@ -18,6 +18,17 @@ end
 
 function update_ship()
   move_ship()
+
+  for m in all(mobs) do
+    if collide(m, ship) then
+      sfx(1)
+      lives -= 1
+      del(mobs, m)
+    end
+  end 
+
+  check_end()
+
   shoot()
 
   -- react flame animation
@@ -27,15 +38,16 @@ function update_ship()
   if muzzle > 0 then
     muzzle -= 1
   end
-
-  if btnp(5) then
-    _upd = update_gover
-    _drw = draw_gover
-  end
 end
 
 function update_mobs()
   for m in all(mobs) do
+    m.y += 1
+
+    if m.y > 128 then
+      del(mobs, m)
+    end
+
     m.spr = 1 + flr((a_t / 12) % #m.anm)
   end
 end
