@@ -11,7 +11,18 @@ function update_bullets()
     if b.y < -8 then
       del(bul, b)
     end
+
     b.y -= bul_spd
+
+    for m in all(mobs) do
+      if collide(b, m) then
+        sfx(2)
+        del(bul, b)
+        del(mobs, m)
+        score += 10
+      end
+    end
+
     b.spr = 1 + flr((a_t / 6) % #b.anm)
   end
 end
