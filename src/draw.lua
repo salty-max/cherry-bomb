@@ -12,8 +12,15 @@ function draw_ship()
     circfill(ship.x + 3, ship.y - 2, muzzle, 7)
   end
 
-  draw_spr(ship)
-  spr(ship_flm[flm_idx], ship.x, ship.y + 7)
+  if invul <= 0 then
+    draw_spr(ship)
+    spr(ship_flm[flm_idx], ship.x, ship.y + 7)
+  else
+    if sin(frm / 6) < 0 then
+      draw_spr(ship)
+      spr(ship_flm[flm_idx], ship.x, ship.y + 7)
+    end
+  end
 end
 
 function draw_mobs()

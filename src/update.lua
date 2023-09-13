@@ -30,13 +30,19 @@ end
 function update_ship()
   move_ship()
 
-  for m in all(mobs) do
-    if collide(m, ship) then
-      sfx(1)
-      lives -= 1
-      del(mobs, m)
+  if invul <= 0 then
+    for m in all(mobs) do
+      if collide(m, ship) then
+        sfx(1)
+        lives -= 1
+        invul = 60
+        sfx(1)
+        --del(mobs, m)
+      end
     end
-  end 
+  else
+    invul -= 1 
+  end
 
   check_end()
 
@@ -57,6 +63,7 @@ function update_mobs()
 
     if m.y > 128 then
       del(mobs, m)
+      spawn_mob()
     end
 
     m.spr = 1 + flr((a_t / 12) % #m.anm)

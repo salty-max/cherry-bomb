@@ -6,9 +6,11 @@ function _init()
   _drw = draw_menu
 
   debug = {}
+  frm = 0
 end
 
 function start_game()
+  frm = 0
   a_t = 0
 
   ship = {
@@ -27,17 +29,19 @@ function start_game()
   bul_spd = 2
 
   mobs= {}
-  make_mob(60, 30)
+  spawn_mob()
 
   score = 1337
-  lives = 1
+  lives = 3
   max_lives = 3
+  invul = 0
 
   _upd = update_game
   _drw = draw_game
 end
 
 function _update60()
+  frm += 1
   _upd()
 end
 

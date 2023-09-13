@@ -6,3 +6,7 @@ function make_mob(x, y)
     anm = {128, 129, 130, 131}
   })
 end
+
+function spawn_mob()
+  make_mob(rnd(120), -7)
+end
