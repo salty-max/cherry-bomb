@@ -39,7 +39,7 @@ function shoot()
       sfx(0)
       muzzle = 5
       make_bullet(ship.x, ship.y - 6)
-      shoot_cd = 8
+      shoot_cd = 4
     else
       shoot_cd -= 1
     end

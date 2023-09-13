@@ -1,3 +1,5 @@
+d_mobs={name=split("brainy"),hp=split("2"),atk=split("1"),sp=split("128")}
+
 function _init()
   stars = {}
   make_starfield()

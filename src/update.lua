@@ -16,11 +16,10 @@ function update_bullets()
 
     for m in all(mobs) do
       if collide(b, m) then
-        sfx(2)
+        m.hp -= 1
+        m.flash = 2
         del(bul, b)
-        del(mobs, m)
-        spawn_mob()
-        score += 10
+        sfx(3)
       end
     end
 
@@ -37,7 +36,6 @@ function update_ship()
         sfx(1)
         lives -= 1
         invul = 60
-        sfx(1)
         --del(mobs, m)
       end
     end
@@ -64,6 +62,13 @@ function update_mobs()
 
     if m.y > 128 then
       del(mobs, m)
+      spawn_mob()
+    end
+
+    if m.hp <= 0 then
+      sfx(2)
+      del(mobs, m)
+      score += 10
       spawn_mob()
     end
 

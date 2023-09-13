@@ -25,7 +25,14 @@ end
 
 function draw_mobs()
   for m in all(mobs) do
+    if m.flash > 0 then
+      m.flash -= 1
+      for i = 1, 15 do
+        pal(i, 7)
+      end
+    end
     draw_spr(m)
+    pal()
   end
 end
 
