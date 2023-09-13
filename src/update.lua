@@ -19,6 +19,7 @@ function update_bullets()
         sfx(2)
         del(bul, b)
         del(mobs, m)
+        spawn_mob()
         score += 10
       end
     end

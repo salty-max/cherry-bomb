@@ -34,10 +34,15 @@ function move_ship()
 end
 
 function shoot()
-  if btnp(4) then
-    sfx(0)
-    muzzle = 5
-    make_bullet(ship.x, ship.y - 6)
+  if btn(4) then
+    if shoot_cd <= 0 then
+      sfx(0)
+      muzzle = 5
+      make_bullet(ship.x, ship.y - 6)
+      shoot_cd = 8
+    else
+      shoot_cd -= 1
+    end
   end
 end
 

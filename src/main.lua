@@ -27,6 +27,7 @@ function start_game()
 
   bul = {}
   bul_spd = 2
+  shoot_cd = 0
 
   mobs= {}
   spawn_mob()
