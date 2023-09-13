@@ -77,12 +77,36 @@ function draw_spr(s)
 end
 
 function draw_explos()
-  for ex in all(explos) do
-    ex.age += 0.2
-    spr(80 + flr(ex.age) * 2, ex.x, ex.y, 2, 2)
+  for pt in all(parts) do
+    local pc = 7
 
-    if ex.age > 5 then
-      del(explos, ex)
+    if pt.age > 20 then
+      pc = 5
+    elseif pt.age > 15 then
+      pc = 2
+    elseif pt.age > 12 then
+      pc = 8
+    elseif pt.age > 10 then
+      pc = 9
+    elseif pt.age > 7 then
+      pc = 10
+    end
+
+    circfill(pt.x, pt.y, pt.r, pc)
+    pt.x += pt.sx
+    pt.y += pt.sy
+
+    -- gradually slow down particles
+    pt.sx *= 0.85
+    pt.sy *= 0.85
+
+    pt.age += 1
+
+    if pt.age > pt.max_age then
+      pt.r -= 0.5
+      if pt.r < 0 then
+        del(parts, pt)
+      end
     end
   end
 end
