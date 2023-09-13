@@ -69,6 +69,7 @@ function update_mobs()
       sfx(2)
       del(mobs, m)
       score += 10
+      explode(m.x - 4, m.y - 4)
       spawn_mob()
     end
 

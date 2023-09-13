@@ -7,3 +7,11 @@ function make_starfield()
     })
   end
 end
+
+function explode(x, y)
+  add(explos, {
+    x = x,
+    y = y,
+    age = 0,
+  })
+end

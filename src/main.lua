@@ -34,6 +34,8 @@ function start_game()
   mobs= {}
   spawn_mob()
 
+  explos = {}
+
   score = 1337
   lives = 3
   max_lives = 3

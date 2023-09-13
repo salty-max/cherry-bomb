@@ -4,6 +4,7 @@ function draw_game()
   draw_ship()
   draw_mobs()
   draw_bullets()
+  draw_explos()
   draw_ui()
 end
 
@@ -72,6 +73,17 @@ function draw_spr(s)
     spr(s.anm[s.spr], s.x, s.y)
   else
     spr(s.spr, s.x, s.y)
+  end
+end
+
+function draw_explos()
+  for ex in all(explos) do
+    ex.age += 0.2
+    spr(80 + flr(ex.age) * 2, ex.x, ex.y, 2, 2)
+
+    if ex.age > 5 then
+      del(explos, ex)
+    end
   end
 end
 
