@@ -19,6 +19,7 @@ function update_bullets()
         m.hp -= 1
         m.flash = 2
         del(bul, b)
+        make_shwave(b.x + 4, b.y + 4, 6, 1, 12)
         sfx(3)
       end
     end
@@ -34,6 +35,7 @@ function update_ship()
     for m in all(mobs) do
       if collide(m, ship) then
         sfx(1)
+        explode("blue", ship.x + 4, ship.y + 4)
         lives -= 1
         invul = 60
         --del(mobs, m)
@@ -43,7 +45,10 @@ function update_ship()
     invul -= 1 
   end
 
-  check_end()
+  if check_end() then
+    _upd = update_gover
+    _drw = draw_gover
+  end
 
   shoot()
 
@@ -69,7 +74,7 @@ function update_mobs()
       sfx(2)
       del(mobs, m)
       score += 10
-      explode(m.x + 4, m.y + 4)
+      explode("red", m.x + 4, m.y + 4)
       spawn_mob()
     end
 

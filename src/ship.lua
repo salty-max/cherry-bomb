@@ -56,8 +56,5 @@ function make_bullet(x, y)
 end
 
 function check_end()
-  if lives <= 0 then
-    _upd = update_gover
-    _drw = draw_gover
-  end
+  return lives <= 0
 end

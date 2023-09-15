@@ -33,8 +33,9 @@ function start_game()
 
   mobs= {}
   spawn_mob()
-  
+
   parts = {}
+  shwaves = {}
 
   score = 0
   lives = 3

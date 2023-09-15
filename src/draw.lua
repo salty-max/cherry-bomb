@@ -5,6 +5,7 @@ function draw_game()
   draw_mobs()
   draw_bullets()
   draw_explos()
+  draw_shwaves()
   draw_ui()
 end
 
@@ -78,21 +79,13 @@ end
 
 function draw_explos()
   for pt in all(parts) do
-    local pc = 7
+    local pc = pt.col == "red" and page_red(pt.age) or page_blue(pt.age)
 
-    if pt.age > 20 then
-      pc = 5
-    elseif pt.age > 15 then
-      pc = 2
-    elseif pt.age > 12 then
-      pc = 8
-    elseif pt.age > 10 then
-      pc = 9
-    elseif pt.age > 7 then
-      pc = 10
+    if pt.spark then
+      pset(pt.x, pt.y, 7)
+    else
+      circfill(pt.x, pt.y, pt.r, pc)
     end
-
-    circfill(pt.x, pt.y, pt.r, pc)
     pt.x += pt.sx
     pt.y += pt.sy
 
@@ -107,6 +100,16 @@ function draw_explos()
       if pt.r < 0 then
         del(parts, pt)
       end
+    end
+  end
+end
+
+function draw_shwaves()
+  for sh in all(shwaves) do
+    circ(sh.x, sh.y, sh.r, sh.col)
+    sh.r += sh.spd
+    if sh.r > sh.max_r then
+      del(shwaves, sh)
     end
   end
 end
